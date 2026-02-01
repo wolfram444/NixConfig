@@ -14,21 +14,63 @@
 
     };
 
-    outputs = {nixpkgs,home-manager, ...}:{
-        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem{
-            system = "x86_64-linux";
-            modules = [
-                ./nixos/configuration.nix
-                 home-manager.nixosModules.home-manager
+    # outputs = {nixpkgs,home-manager, flake-utils, ...}:{
+    #     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem{
+    #         system = "x86_64-linux";
+    #         modules = [
+    #             ./nixos/configuration.nix
+    #              home-manager.nixosModules.home-manager
+    #             {
+    #                 home-manager.useUserPackages = true;
+    #                 home-manager.useGlobalPkgs = true;
+    #                 home-manager.users.wolf4am = import ./home-manager/home.nix;
+    #                 home-manager.backupFileExtension = "backup";
+    #             }
+    #         ];
+    #     };
+
+    # };
+
+
+
+    outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    flake-utils,
+    ...
+  } @ inputs: let
+    outputs = self;
+  in
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        # devShells.default = import ./shell.nix {inherit pkgs;};
+        formatter = nixpkgs.legacyPackages.${system}.alejandra;
+      }
+    )
+    // {
+      lib = nixpkgs.lib // home-manager.lib;
+
+    #   nixosModules = import ./modules/nixos;
+    #   homeModules = import ./modules/home;
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos/configuration.nix
+        home-manager.nixosModules.home-manager
                 {
                     home-manager.useUserPackages = true;
                     home-manager.useGlobalPkgs = true;
                     home-manager.users.wolf4am = import ./home-manager/home.nix;
                     home-manager.backupFileExtension = "backup";
                 }
-            ];
+        ];
+        specialArgs = {
+          inherit inputs outputs;
         };
-
+      };
     };
 
 }

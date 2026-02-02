@@ -78,6 +78,9 @@
     neofetch
     htop
     vim
+    rustc
+    cargo
+    rustfmt
   ];
 
   

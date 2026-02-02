@@ -81,6 +81,7 @@
     rustc
     cargo
     rustfmt
+    gcc
   ];
 
   

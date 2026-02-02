@@ -52,14 +52,17 @@
   };
   
 
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  # users.defaultUserShell = pkgs.zsh;
   users.users.wolf4am = {
     isNormalUser = true;
     description = "Xabib";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     #  thunderbird
-    ];
+    ];  
+    
   };
 
   # Install firefox.

@@ -14,25 +14,6 @@
 
     };
 
-    # outputs = {nixpkgs,home-manager, flake-utils, ...}:{
-    #     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem{
-    #         system = "x86_64-linux";
-    #         modules = [
-    #             ./nixos/configuration.nix
-    #              home-manager.nixosModules.home-manager
-    #             {
-    #                 home-manager.useUserPackages = true;
-    #                 home-manager.useGlobalPkgs = true;
-    #                 home-manager.users.wolf4am = import ./home-manager/home.nix;
-    #                 home-manager.backupFileExtension = "backup";
-    #             }
-    #         ];
-    #     };
-
-    # };
-
-
-
     outputs = {
     self,
     nixpkgs,

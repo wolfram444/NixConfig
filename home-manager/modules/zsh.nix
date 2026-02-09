@@ -1,5 +1,5 @@
 {
-  confgi,
+  config,
   pkgs,
   ...
 }: {

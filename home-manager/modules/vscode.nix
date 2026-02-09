@@ -35,6 +35,7 @@
         "editor.stickyScroll.enabled" = false;
         "editor.mouseWheelZoom" = true;
         "extensions.autoCheckUpdates"= false;
+        "editor.fontFamily" = "Roboto Mono";
         "update.mode"= "none";
         "vsicons.dontShowNewVersionMessage"= true;
         "github.copilot.enable"= {

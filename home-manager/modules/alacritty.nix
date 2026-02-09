@@ -7,6 +7,15 @@
         style = "Block";
       };
 
+
+
+      # font = {
+      #   normal = {
+      #     family = "Roboto Mono";
+      #     style = "Regular";
+      #   };
+      #       };
+
       window = {
         startup_mode = "Windowed";
 
@@ -20,7 +29,6 @@
             y = 6;
           };
         };
-
 
 
 

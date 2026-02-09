@@ -7,14 +7,20 @@
         style = "Block";
       };
 
-      # window = {
-      #   option_as_alt = "Both";
-      #   opacity = 1.0;
-      #   padding = {
-      #     x = 2;
-      #     y = 2;
-      #   };
-      # };
+      window = {
+        startup_mode = "Windowed";
+
+        dimensions = {
+        columns = 120;
+        lines = 34;
+        };
+
+          padding = {
+            x = 6;
+            y = 6;
+          };
+        };
+
 
 
 

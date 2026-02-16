@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -11,5 +13,11 @@
     initContent = ''
       eval "$(starship init zsh)"
     '';
+
+      shellAliases = {
+       cls = "clear";
+    }; 
+      
   };
+
 }

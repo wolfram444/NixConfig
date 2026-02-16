@@ -22,6 +22,12 @@
   # Set your time zone.
   time.timeZone = "Asia/Tashkent";
 
+  #swap for RAM
+  swapDevices = [{
+  device = "/var/lib/swapfile";
+  size = 16*1024; # 16 GB
+}];
+
   # Select internationalisation properties.
   i18n.defaultLocale = "ru_RU.UTF-8";
 

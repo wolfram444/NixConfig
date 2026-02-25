@@ -89,6 +89,7 @@
     cargo
     rustfmt
     gcc
+    fractal
   ];
 
   

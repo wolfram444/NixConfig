@@ -1,9 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
 
 
 
@@ -89,6 +90,7 @@
     cargo
     rustfmt
     gcc
+    docker
     fractal
   ];
 

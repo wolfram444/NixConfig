@@ -14,7 +14,7 @@
           jnoortheen.nix-ide
           pkief.material-product-icons
           pkief.material-icon-theme
-          
+          ms-azuretools.vscode-containers
         ];
 
         userSettings = {

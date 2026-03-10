@@ -90,11 +90,12 @@
     cargo
     rustfmt
     gcc
+    docker-compose
     docker
     fractal
   ];
 
-  
+  virtualisation.docker.enable = true;
 
   system.stateVersion = "25.11"; # Do not change it!!
 

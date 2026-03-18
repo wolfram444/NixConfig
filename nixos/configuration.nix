@@ -93,7 +93,31 @@
     docker-compose
     docker
     fractal
+    github-desktop
   ];
+
+  hardware = {
+    graphics = {
+      enable = true;
+    };
+
+    nvidia = {
+      open = false;
+      modesetting.enable = true;
+      nvidiaSettings = false;
+      powerManagement.enable = true;
+    };
+
+    bluetooth.settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
+
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
 
   virtualisation.docker.enable = true;
 

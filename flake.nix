@@ -2,6 +2,16 @@
 
     description = "My system config";
 
+    nixConfig = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    extra-substituters = [ "https://cache.xinux.uz/" ];
+    extra-trusted-public-keys = [ "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0=" ];
+    allow-import-from-derivation = true;
+  };
+
     inputs = {
 
      nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";

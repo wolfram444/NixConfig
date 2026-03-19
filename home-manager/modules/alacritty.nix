@@ -1,13 +1,10 @@
- 
- {
- programs.alacritty = {
+{
+  programs.alacritty = {
     enable = true;
     settings = {
       cursor = {
         style = "Block";
       };
-
-
 
       # font = {
       #   normal = {
@@ -20,17 +17,15 @@
         startup_mode = "Windowed";
 
         dimensions = {
-        columns = 120;
-        lines = 34;
+          columns = 120;
+          lines = 34;
         };
 
-          padding = {
-            x = 6;
-            y = 6;
-          };
+        padding = {
+          x = 6;
+          y = 6;
         };
-
-
+      };
 
       colors = {
         primary = {
@@ -62,4 +57,4 @@
       };
     };
   };
- }
+}

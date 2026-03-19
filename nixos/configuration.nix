@@ -1,18 +1,19 @@
-{ config, pkgs, lib, inputs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-
-
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "nixos"; # Define your hostname.
-  
 
   #Flake
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -24,10 +25,12 @@
   time.timeZone = "Asia/Tashkent";
 
   #swap for RAM
-  swapDevices = [{
-  device = "/var/lib/swapfile";
-  size = 16*1024; # 16 GB
-}];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # 16 GB
+    }
+  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "ru_RU.UTF-8";
@@ -57,8 +60,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.zsh.enable = true;
@@ -66,11 +67,10 @@
   users.users.wolf4am = {
     isNormalUser = true;
     description = "Xabib";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-    #  thunderbird
-    ];  
-    
+      #  thunderbird
+    ];
   };
 
   # Install firefox.
@@ -94,6 +94,7 @@
     docker
     fractal
     github-desktop
+    direnv
   ];
 
   hardware = {
@@ -115,12 +116,9 @@
     };
   };
 
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
+  services.xserver.videoDrivers = ["nvidia"];
 
   virtualisation.docker.enable = true;
 
   system.stateVersion = "25.11"; # Do not change it!!
-
 }

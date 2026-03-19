@@ -1,30 +1,27 @@
 {
+  description = "My system config";
 
-    description = "My system config";
-
-    nixConfig = {
+  nixConfig = {
     experimental-features = [
       "nix-command"
       "flakes"
     ];
-    extra-substituters = [ "https://cache.xinux.uz/" ];
-    extra-trusted-public-keys = [ "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0=" ];
+    extra-substituters = ["https://cache.xinux.uz/"];
+    extra-trusted-public-keys = ["cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="];
     allow-import-from-derivation = true;
   };
 
-    inputs = {
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    flake-utils.url = "github:numtide/flake-utils";
 
-     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-     flake-utils.url = "github:numtide/flake-utils";
-
-     home-manager = {
+    home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
-      };
-
     };
+  };
 
-    outputs = {
+  outputs = {
     self,
     nixpkgs,
     home-manager,
@@ -39,31 +36,38 @@
       in {
         # devShells.default = import ./shell.nix {inherit pkgs;};
         formatter = nixpkgs.legacyPackages.${system}.alejandra;
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            self.formatter.${system}
+
+            nixd
+            statix
+            deadnix
+            nixfmt-tree
+          ];
+        };
       }
     )
     // {
       lib = nixpkgs.lib // home-manager.lib;
 
-    #   nixosModules = import ./modules/nixos;
-    #   homeModules = import ./modules/home;
+      #   nixosModules = import ./modules/nixos;
+      #   homeModules = import ./modules/home;
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./nixos/configuration.nix
-        home-manager.nixosModules.home-manager
-                {
-                    home-manager.useUserPackages = true;
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.users.wolf4am = import ./home-manager/home.nix;
-                    home-manager.backupFileExtension = "backup";
-                }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.wolf4am = import ./home-manager/home.nix;
+            home-manager.backupFileExtension = "backup";
+          }
         ];
         specialArgs = {
           inherit inputs outputs;
         };
       };
     };
-
 }
-
-

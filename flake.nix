@@ -2,8 +2,7 @@
   description = "My system config";
 
   inputs = {
-    xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
-    nixpkgs.url = "github:xinux-org/upstream/updatee-e-imzo";
+    nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     # xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     flake-utils.url = "github:numtide/flake-utils";
 

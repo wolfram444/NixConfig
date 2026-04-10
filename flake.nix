@@ -1,49 +1,49 @@
 {
   description = "My system config";
 
-  nixConfig = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    extra-substituters = ["https://cache.xinux.uz/"];
-    extra-trusted-public-keys = ["cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="];
-    allow-import-from-derivation = true;
-  };
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
+    upstream.url = "github:xinux-org/upstream/updatee-e-imzo";
+    # xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/";
+      # inputs.upstream.follows = "nixpkgs";
+    };
+
+    xinux-modules = {
+      url = "git+https://git.oss.uzinfocom.uz/xinux/modules?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    flake-utils,
-    ...
-  } @ inputs: let
-    outputs = self;
-  in
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      flake-utils,
+      ...
+    }@inputs:
+    let
+      outputs = self;
+    in
     flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
+      system:
+      let
+        pkgs = inputs.upstream.legacyPackages.${system};
+      in
+      {
         # devShells.default = import ./shell.nix {inherit pkgs;};
-        formatter = nixpkgs.legacyPackages.${system}.alejandra;
+        formatter = pkgs.nixfmt;
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             self.formatter.${system}
-
             nixd
+            nixfmt
             statix
             deadnix
-            nixfmt-tree
           ];
         };
       }

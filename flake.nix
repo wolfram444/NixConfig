@@ -2,19 +2,19 @@
   description = "My system config";
 
   inputs = {
-    nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
-    upstream.url = "github:xinux-org/upstream/updatee-e-imzo";
+    xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
+    nixpkgs.url = "github:xinux-org/upstream/updatee-e-imzo";
     # xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
       url = "github:nix-community/home-manager/";
-      # inputs.upstream.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     xinux-modules = {
       url = "git+https://git.oss.uzinfocom.uz/xinux/modules?ref=main&shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xinux-nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -32,7 +32,7 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = inputs.upstream.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system};
       in
       {
         # devShells.default = import ./shell.nix {inherit pkgs;};

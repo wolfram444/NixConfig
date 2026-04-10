@@ -139,6 +139,8 @@
     e-imzo-manager
     # garage_2
     google-chrome
+    # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })
+
   ];
 
   services.e-imzo.enable = true;

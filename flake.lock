@@ -633,7 +633,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1775781825,
@@ -752,17 +754,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1775423009,
-        "narHash": "sha256-vPKLpjhIVWdDrfiUM8atW6YkIggCEKdSAlJPzzhkQlw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "68d8aa3d661f0e6bd5862291b5bb263b2a6595c9",
+        "lastModified": 1775824938,
+        "narHash": "sha256-HEPTi0QuxKJo0sOhmZc/T1ou26McM3sKTZW9z1aP+8w=",
+        "owner": "xinux-org",
+        "repo": "upstream",
+        "rev": "4d7b9318c0828b7e85d695383970ab3d3d875752",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
+        "owner": "xinux-org",
+        "ref": "updatee-e-imzo",
+        "repo": "upstream",
         "type": "github"
       }
     },
@@ -847,9 +849,9 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
-        "upstream": "upstream",
-        "xinux-modules": "xinux-modules"
+        "nixpkgs": "nixpkgs",
+        "xinux-modules": "xinux-modules",
+        "xinux-nixpkgs": "xinux-nixpkgs"
       }
     },
     "systems": {
@@ -1064,22 +1066,6 @@
         "type": "github"
       }
     },
-    "upstream": {
-      "locked": {
-        "lastModified": 1775802535,
-        "narHash": "sha256-hvHxdLRiAxaajk3reVWgzKrxfs/K+XBGTy835O5P/OA=",
-        "owner": "xinux-org",
-        "repo": "upstream",
-        "rev": "25e975903dffb8d5aeda3732422585b0eca5ef29",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xinux-org",
-        "ref": "updatee-e-imzo",
-        "repo": "upstream",
-        "type": "github"
-      }
-    },
     "uz-xkb": {
       "flake": false,
       "locked": {
@@ -1257,9 +1243,7 @@
       "inputs": {
         "mac-style-plymouth": "mac-style-plymouth",
         "nix-software-center": "nix-software-center",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "uz-xkb": "uz-xkb",
         "xin": "xin",
         "xinux-lib": "xinux-lib_3",
@@ -1280,6 +1264,23 @@
         "shallow": true,
         "type": "git",
         "url": "https://git.oss.uzinfocom.uz/xinux/modules"
+      }
+    },
+    "xinux-nixpkgs": {
+      "locked": {
+        "lastModified": 1775722315,
+        "narHash": "sha256-XqXmrLmQtNFQSn9eAlOyQv7Bon/xZg9da5DaANvvS7g=",
+        "ref": "nixos-unstable",
+        "rev": "42d21838e0a371ea9493c20a9114638c392f76f4",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.oss.uzinfocom.uz/xinux/nixpkgs"
+      },
+      "original": {
+        "ref": "nixos-unstable",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.oss.uzinfocom.uz/xinux/nixpkgs"
       }
     },
     "xinux-tour": {

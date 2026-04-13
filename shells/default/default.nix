@@ -1,12 +1,11 @@
-{ pkgs, ... }:
-{
-  devShells.default = pkgs.mkShell {
+{ pkgs, inputs, ... }:
+
+  pkgs.mkShell {
     packages = with pkgs; [
-      self.formatter.${system}
+      inputs.self.formatter.${system}
       nixd
       nixfmt
       statix
       deadnix
     ];
-  };
 }

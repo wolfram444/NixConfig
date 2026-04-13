@@ -2,10 +2,10 @@
 {
   services.garage = {
     enable = true;
-    package = pkgs.garage;
+    package = pkgs.garage_2;
 
     settings = {
-      replication_mode = "2";
+      replication_factor = 1;
       data_dir = "/var/lib/garage/data";
       metadata_dir = "/var/lib/garage/meta";
       db_engine = "sqlite";

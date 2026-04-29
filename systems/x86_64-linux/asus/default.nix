@@ -10,10 +10,12 @@
     ./hardware-configuration.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "asus"; # Define your hostname.
+  boot.loader.grub.devices = [ "nodev" ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -36,6 +38,27 @@
     packages = with pkgs; [
       #  thunderbird
     ];
+  };
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  systemd.services.garage-webui = {
+    description = "Garage Web UI";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.garage-webui}/bin/garage-webui";
+      Restart = "on-failure";
+      RestartSec = "5s";
+      DynamicUser = true;
+    };
+    environment = {
+      PORT = "3905";
+    };
+
   };
 
   system.stateVersion = "25.11"; # Do not change it!!

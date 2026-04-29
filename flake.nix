@@ -11,6 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     xinux-modules = {
       url = "git+https://git.oss.uzinfocom.uz/xinux/modules?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +58,7 @@
         xinux-modules.nixosModules.kernel
         xinux-modules.nixosModules.xinux
         xinux-modules.nixosModules.gnome
+        xinux-modules.nixosModules.efiboot
       ];
 
       # Configure Snowfall Lib, all of these settings are optional.

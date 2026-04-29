@@ -18,7 +18,7 @@
     jdk8_headless
     direnv
     fastfetch
-    garage-webui
+    # garage-webui
     google-chrome
     # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })5
   ];

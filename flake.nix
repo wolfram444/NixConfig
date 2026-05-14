@@ -22,6 +22,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Xinux
+    nix-data = {
+      url = "git+https://git.oss.uzinfocom.uz/xinux/nix-data?ref=main&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     xinux-settings = {
       url = "git+https://git.oss.uzinfocom.uz/xinux/settings?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,11 +60,18 @@
 
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
+        nix-data.nixosModules.nix-data
         xinux-modules.nixosModules.branding
         xinux-modules.nixosModules.kernel
         xinux-modules.nixosModules.xinux
         xinux-modules.nixosModules.gnome
         xinux-modules.nixosModules.efiboot
+        xinux-modules.nixosModules.graphical
+        # xinux-modules.nixosModules.shell
+        xinux-modules.nixosModules.gaming
+        xinux-modules.nixosModules.developer
+        xinux-modules.nixosModules.metadata
+
       ];
 
       # Configure Snowfall Lib, all of these settings are optional.

@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -42,6 +43,14 @@
 
   virtualisation.docker = {
     enable = true;
+  };
+
+  programs.nix-data = {
+    enable = true;
+    # systemconfig = "/home/bahrom/workplace/bahrom04/nix-config/systems/x86_64-linux/matax/default.nix"
+    systemconfig = "/home/wolf4am/NixConfig/systems/x86_64-linux/asus/default.nix";
+    flake = "/home/wolf4am/NixConfig/flake.nix";
+    flakearg = "asus";
   };
 
   systemd.services.garage-webui = {

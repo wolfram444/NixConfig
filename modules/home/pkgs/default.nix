@@ -20,6 +20,7 @@
     fastfetch
     # garage-webui
     google-chrome
+    element-desktop
     # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })5
   ];
 }

@@ -28,6 +28,7 @@
   # Define a user account.
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+  
   users.users.wolf4am = {
     isNormalUser = true;
     description = "Xabib";
@@ -35,6 +36,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [
       #  thunderbird
@@ -69,6 +71,8 @@
     };
 
   };
+
+  networking.firewall.allowedTCPPorts = [ 25565 ];
 
   system.stateVersion = "25.11"; # Do not change it!!
 }

@@ -21,6 +21,9 @@
     # garage-webui
     google-chrome
     element-desktop
-    # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })5
+    dnsutils
+    discord
+    ngrok
+    # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })
   ];
 }

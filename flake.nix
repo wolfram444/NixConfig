@@ -4,16 +4,16 @@
   inputs = {
     nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     # xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
-    flake-utils.url = "github:numtide/flake-utils";
+    # flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/";
+      url = "git+https://git.oss.uzinfocom.uz/mirrors/home-manager.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Secrets management
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      url = "git+https://git.oss.uzinfocom.uz/mirrors/sops-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,10 +33,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # disko = {
+    #   url = "git+https://git.oss.uzinfocom.uz/mirrors/disko.git";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     bluer.url = "git+https://git.oss.uzinfocom.uz/bleur/bleur?ref=main&shallow=1";
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib";
+      url = "git+https://git.oss.uzinfocom.uz/xinux/lib?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

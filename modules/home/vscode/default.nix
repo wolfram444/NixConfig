@@ -16,6 +16,7 @@
         mkhl.direnv
         christian-kohler.path-intellisense
         brettm12345.nixfmt-vscode
+        eamodio.gitlens
       ];
 
       userSettings = {

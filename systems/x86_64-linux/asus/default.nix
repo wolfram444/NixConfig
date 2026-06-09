@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -9,6 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules.nix
+    inputs.opensearch-dashboard.nixosModules.default
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -28,7 +30,7 @@
   # Define a user account.
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  
+
   users.users.wolf4am = {
     isNormalUser = true;
     description = "Xabib";

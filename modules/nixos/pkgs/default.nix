@@ -9,6 +9,7 @@ in
     e-imzo-manager
     xinux-settings
     bluer
+    jdk
     # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })5
   ];
 }

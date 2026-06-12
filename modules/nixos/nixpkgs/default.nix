@@ -20,7 +20,7 @@
 
       experimental-features = "nix-command flakes pipe-operators";
       substituters = [
-        "https://cache.xinux.uz/"
+        "https://cache.xinux.uz/?priority=10"
         "https://cache.nixos.org/"
       ];
       trusted-public-keys = [

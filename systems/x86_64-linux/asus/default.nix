@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
+{ config
+, pkgs
+, lib
+, inputs
+, ...
 }:
 {
   imports = [
@@ -47,6 +46,13 @@
 
   virtualisation.docker = {
     enable = true;
+  };
+
+  time.timeZone = "Asia/Tashkent";
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
   };
 
   programs.nix-data = {

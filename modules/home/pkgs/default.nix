@@ -16,6 +16,7 @@
     prismlauncher
     github-desktop
     jdk8_headless
+    # ventoy-full-gtk
     direnv
     fastfetch
     # garage-webui

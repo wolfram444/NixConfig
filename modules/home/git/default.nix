@@ -4,7 +4,7 @@
 
     settings = {
       user = {
-        name = "wolfram444";
+        name = "wolf4am";
         email = "kamiltox2006@gmail.com";
       };
       init.defaultBranch = "main";

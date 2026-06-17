@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
 }:
 {
   imports = [
@@ -13,11 +14,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
   networking.hostName = "asus"; # Define your hostname.
-  boot.loader.grub.devices = [ "nodev" ];
 
   # Enable networking
   networking.networkmanager.enable = true;

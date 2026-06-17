@@ -5,6 +5,7 @@
     nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     # xinux-nixpkgs.url = "git+https://git.oss.uzinfocom.uz/xinux/nixpkgs?ref=nixos-unstable&shallow=1";
     # flake-utils.url = "github:numtide/flake-utils";
+    nix-cachyos-kernel.url = "git+https://git.oss.uzinfocom.uz/mirrors/nix-cachyos-kernel?ref=release&shallow=1";
 
     home-manager = {
       url = "git+https://git.oss.uzinfocom.uz/mirrors/home-manager.git";

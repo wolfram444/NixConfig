@@ -8,12 +8,64 @@
 let
   # certs_dir = "/var/lib/opensearch/config/certs";
   cfg = config.services.opensearch;
+  # packages =
+
+  #   pkgs.stdenv.mkDerivation rec {
+  #     pname = "opensearch-dashboards";
+  #     version = "3.5.0";
+
+  #     src = pkgs.fetchurl {
+  #       url = "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${version}/${pname}-${version}-linux-x64.tar.gz";
+  #       hash = "sha256-g0aKKvi2rAd3AFdlfkotzoyREfoSTKJFI7bihjFu2wU=";
+  #     };
+
+  #     patches = [
+  #       # OpenSearch Dashboard specifies that it wants nodejs 14.20.1 but nodejs in nixpkgs is at 14.21.1.
+  #       ./disable-nodejs-version-check.patch
+  #     ];
+
+  #     dontStrip = true;
+
+  #     nativeBuildInputs = [ pkgs.makeWrapper ];
+
+  #     installPhase = ''
+  #       mkdir -p $out/libexec/opensearch-dashboards $out/bin
+  #       mv * $out/libexec/opensearch-dashboards/
+  #       rm -r $out/libexec/opensearch-dashboards/node
+  #       for bin in $out/libexec/opensearch-dashboards/bin/opensearch-dashboards*; do
+  #         makeWrapper $bin $out/bin/$(basename $bin) \
+  #           --prefix PATH : "${
+  #             lib.makeBinPath [
+  #               pkgs.nodejs
+  #               pkgs.coreutils
+  #               pkgs.which
+  #             ]
+  #           }"
+
+  #       done
+  #       rm -rf $out/libexec/opensearch-dashboards/plugins/securityDashboards
+  #     '';
+
+  #     meta = {
+
+  #       cdescription = "Visualization and user interface for OpenSearch";
+  #       homepage = "https://opensearch.org";
+  #       # license = licenses.asl20;
+  #       # platforms = with platforms; linux;
+  #       mainProgram = "opensearch-dashboards";
+  #     };
+  #   };
+
 in
 {
   # imports = [ inputs.opensearch-dashboard.nixosModules.default ];
   services.opensearch-dashboards = {
     enable = true;
+    # package = packages;
     opensearchHosts = [ "http://localhost:9200" ];
+    # environment = {
+    #   DISABLE_SECURITY_PLUGIN = "true";
+    # };
   };
   services.opensearch = {
     enable = true;
@@ -24,7 +76,6 @@ in
     # ];
 
     settings = {
-
       "cluster.name" = "my-cluster1";
       "node.name" = "node-1";
       "network.host" = "127.0.0.1";
@@ -196,6 +247,7 @@ in
   systemd.services.opensearch = {
     environment = {
       OPENSEARCH_INITIAL_ADMIN_PASSWORD = "SecureP@ssword123!";
+
     };
     # preStart = pkgs.lib.mkBefore ''
     #   if [ ! -d "${certs_dir}" ]; then

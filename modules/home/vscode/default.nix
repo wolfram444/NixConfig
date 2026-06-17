@@ -15,7 +15,6 @@
         ms-azuretools.vscode-containers
         mkhl.direnv
         christian-kohler.path-intellisense
-        brettm12345.nixfmt-vscode
         eamodio.gitlens
       ];
 
@@ -36,7 +35,7 @@
         "workbench.productIconTheme" = "material-product-icons";
         "workbench.iconTheme" = "material-icon-theme";
         # "material-icon-theme.files.color" = "#42a5f5";
-        "workbench.statusBar.visible" = false;
+        # "workbench.statusBar.visible" = false;
         "editor.stickyScroll.enabled" = false;
         "editor.mouseWheelZoom" = true;
         "extensions.autoCheckUpdates" = false;
@@ -50,48 +49,42 @@
           "scminput" = false;
         };
 
-        "[nix]" = {
-          "editor.tabSize" = 2;
-          "editor.defaultFormatter" = "brettm12345.nixfmt-vscode";
-          "editor.formatOnPaste" = true;
-          "editor.formatOnSave" = true;
-          "editor.formatOnType" = false;
-        };
-        "nix" = {
-          "enableLanguageServer" = true;
-          "serverPath" = "nixd";
-          "formatterPath" = "nixfmt";
-          "serverSettings" = {
-            "nixd" = {
-              "formatting" = {
-                "command" = [
-                  "nixfmt"
-                ];
-              };
-              # "options" = {
-              #   "nixos" = {
-              #     "expr" = "(builtins.getFlake \"/absolute/path/to/flake\").nixosConfigurations.<name>.options";
-              #   };
-              #   "home-manager" = {
-              #     "expr" = "(builtins.getFlake \"/absolute/path/to/flake\").homeConfigurations.<name>.options";
-              #   };
-              #   "nix-darwin" = {
-              #     "expr" = "(builtins.getFlake \"$\{workspaceFolder}/path/to/flake\").darwinConfigurations.<name>.options";
-              #   };
-              # };
-            };
-          };
-        };
+        # "[nix]" = {
+        #   "editor.tabSize" = 2;
+        #   "editor.defaultFormatter" = "brettm12345.nixfmt-vscode";
+        #   "editor.formatOnPaste" = true;
+        #   "editor.formatOnSave" = true;
+        #   "editor.formatOnType" = false;
+        # };
+        # "nix" = {
+        #   "enableLanguageServer" = true;
+        #   # "serverPath" = "nixd";
+        #   # "formatterPath" = "nixfmt";
+        #   "serverSettings" = {
+        #     "nixd" = {
+        #       # "formatting" = {
+        #       #   "command" = [
+        #       #     "nixfmt"
+        #       #   ];
+        #       # };
+        #       # "options" = {
+        #       #   "nixos" = {
+        #       #     "expr" = "(builtins.getFlake \"/absolute/path/to/flake\").nixosConfigurations.<name>.options";
+        #       #   };
+        #       #   "home-manager" = {
+        #       #     "expr" = "(builtins.getFlake \"/absolute/path/to/flake\").homeConfigurations.<name>.options";
+        #       #   };
+        #       #   "nix-darwin" = {
+        #       #     "expr" = "(builtins.getFlake \"$\{workspaceFolder}/path/to/flake\").darwinConfigurations.<name>.options";
+        #       #   };
+        #       # };
+        #     };
+        #   };
+        # };
       };
     };
   };
 }
-
-
-
-
-
-
 
 # { pkgs, ... }:
 # {
@@ -206,7 +199,3 @@
 #     };
 #   };
 # }
-
-
-
-

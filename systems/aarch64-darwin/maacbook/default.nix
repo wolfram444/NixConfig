@@ -5,8 +5,8 @@
 
 
   environment.systemPackages = with pkgs; [
-    git
     vim
+    fastfetch
     htop
     
   ];

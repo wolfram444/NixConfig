@@ -8,6 +8,7 @@
     git
     vim
     htop
+    
   ];
 
   

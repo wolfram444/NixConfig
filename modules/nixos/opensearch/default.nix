@@ -13,13 +13,61 @@ let
         chmod +x $out/plugins/opensearch-security/tools/*.sh
       '';
     });
+
+    packages =
+
+    pkgs.stdenv.mkDerivation rec {
+      pname = "opensearch-dashboards";
+      version = "3.5.0";
+
+      src = pkgs.fetchurl {
+        url = "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${version}/${pname}-${version}-linux-x64.tar.gz";
+        hash = "sha256-g0aKKvi2rAd3AFdlfkotzoyREfoSTKJFI7bihjFu2wU=";
+      };
+
+      # patches = [
+      #   # OpenSearch Dashboard specifies that it wants nodejs 14.20.1 but nodejs in nixpkgs is at 14.21.1.
+      #   ./disable-nodejs-version-check.patch
+      # ];
+
+      dontStrip = true;
+
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+
+      installPhase = ''
+        mkdir -p $out/libexec/opensearch-dashboards $out/bin
+        mv * $out/libexec/opensearch-dashboards/
+        rm -r $out/libexec/opensearch-dashboards/node
+        for bin in $out/libexec/opensearch-dashboards/bin/opensearch-dashboards*; do
+          makeWrapper $bin $out/bin/$(basename $bin) \
+            --prefix PATH : "${
+              lib.makeBinPath [
+                pkgs.nodejs
+                pkgs.coreutils
+                pkgs.which
+              ]
+            }"
+
+        done
+        rm -rf $out/libexec/opensearch-dashboards/plugins/securityDashboards
+      '';
+
+      meta = {
+
+        cdescription = "Visualization and user interface for OpenSearch";
+        homepage = "https://opensearch.org";
+        # license = licenses.asl20;
+        # platforms = with platforms; linux;
+        mainProgram = "opensearch-dashboards";
+      };
+    };
 in
 {
   # imports = [ inputs.opensearch-dashboard.nixosModules.default ];
   services.opensearch-dashboards = {
     enable = true;
-    # package = packages;
-    opensearchHosts = [ "http://localhost:9200" ];
+    package = packages;
+    opensearchHosts = [ "https://search.funksiyachi.uz/" ];
     # environment = {
     #   DISABLE_SECURITY_PLUGIN = "true";
     # };
@@ -39,165 +87,7 @@ in
       "http.port" = 9200;
       "discovery.type" = "single-node";
 
-      # "plugins.security.disabled" = false;
-      # "plugins.security.allow_unsafe_democertificates" = true;
-      # "plugins.security.allow_default_init_securityindex" = true;
-
-      # # Transport layer — PEM формат
-      # "plugins.security.ssl.transport.pemcert_filepath" = "esnode.pem";
-      # "plugins.security.ssl.transport.pemkey_filepath" = "esnode-key.pem";
-      # "plugins.security.ssl.transport.pemtrustedcas_filepath" = "root-ca.pem";
-      # "plugins.security.ssl.transport.enforce_hostname_verification" = false;
-
-      # # HTTP layer — PEM формат
-      # "plugins.security.ssl.http.enabled" = true;
-      # "plugins.security.ssl.http.pemcert_filepath" = "esnode.pem";
-      # "plugins.security.ssl.http.pemkey_filepath" = "esnode-key.pem";
-      # "plugins.security.ssl.http.pemtrustedcas_filepath" = "root-ca.pem";
-
-      # "plugins.security.authcz.admin_dn" = [
-      #   "CN=kirk,OU=client,O=client,L=test,C=test"
-      # ];
-      # "plugins.security.nodes_dn" = [
-      #   "CN=opensearch-node1,OU=node,O=node,L=test,C=test"
-      # ];
-      #=========================================================
-
-      # "cluster.name" = "my-cluster1";
-      # "node.name" = "node-1";
-      # "network.host" = "127.0.0.1";
-      # "http.port" = 9200;
-      # "discovery.type" = "single-node";
-
-      # "plugins.security.disabled" = false;
-      # "plugins.security.allow_unsafe_democertificates" = true;
-      # "plugins.security.allow_default_init_securityindex" = true;
-
-      # # Настройка SSL для межнодового взаимодействия (Transport Layer)
-      # "plugins.security.ssl.transport.enforce_profile" = false;
-      # "plugins.security.ssl.transport.keystore_filepath" = "esnode.pem";
-      # "plugins.security.ssl.transport.truststore_filepath" = "root-ca.pem";
-
-      # # Настройка SSL для внешних запросов / API (HTTP Layer)
-      # "plugins.security.ssl.http.enabled" = true;
-      # "plugins.security.ssl.http.keystore_filepath" = "esnode.pem";
-      # "plugins.security.ssl.http.truststore_filepath" = "root-ca.pem";
-
-      # # Привязка сертификата администратора (kirk) для настройки прав
-      # "plugins.security.authcz.admin_dn" = [
-      #   "CN=kirk,OU=client,O=client,L=test,C=test"
-      # ];
-      # "plugins.security.nodes_dn" = [
-      #   "CN=opensearch-node1,OU=node,O=node,L=test,C=test"
-      # ];
-
-      # "http.cors.enabled" = "true";
-      # "http.cors.allow-origin" = "https://localhost:9200";
-      # "http.cors.allow-credentials" = "true";
-      # "http.cors.allow-headers" =
-      #   "X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization";
-
-      # "plugins.security.disabled" = false;
-      # # OpenSearch reads cert's DN back formatted according to RFC 2253
-
-      # "plugins.security.ssl.transport.enabled" = true;
-
-      # # plugins.security.ssl.transport.pemcert_filepath: esnode.pem
-      # "plugins.security.ssl.transport.pemcert_filepath" = "${certs_dir}/esnode.pem";
-
-      # # plugins.security.ssl.transport.pemkey_filepath: esnode-key.pem
-      # "plugins.security.ssl.transport.pemkey_filepath" = "${certs_dir}/esnode-key.pem";
-
-      # # plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
-      # "plugins.security.ssl.transport.pemtrustedcas_filepath" = "${certs_dir}/root-ca.pem";
-
-      # # transport.ssl.enforce_hostname_verification: false
-      # "transport.ssl.enforce_hostname_verification" = false;
-
-      # # plugins.security.ssl.http.enabled: true
-      # "plugins.security.ssl.http.enabled" = true;
-
-      # # plugins.security.ssl.http.pemcert_filepath: esnode.pem
-      # "plugins.security.ssl.http.pemcert_filepath" = "${certs_dir}/esnode.pem";
-
-      # # plugins.security.ssl.http.pemkey_filepath: esnode-key.pem
-      # "plugins.security.ssl.http.pemkey_filepath" = "${certs_dir}/esnode-key.pem";
-
-      # # plugins.security.ssl.http.pemtrustedcas_filepath: root-ca.pem
-      # "plugins.security.ssl.http.pemtrustedcas_filepath" = "${certs_dir}/root-ca.pem";
-
-      # # plugins.security.allow_unsafe_democertificates: true
-      # "plugins.security.allow_unsafe_democertificates" = true;
-
-      # # plugins.security.allow_default_init_securityindex: true
-      # "plugins.security.allow_default_init_securityindex" = "true";
-
-      # # plugins.security.authcz.admin_dn: ['CN=kirk,OU=client,O=client,L=test,C=de']
-      # "plugins.security.authcz.admin_dn" = [ "CN=kirk,OU=client,O=client,L=test,C=de" ];
-
-      # # plugins.security.audit.type: internal_opensearch
-      # "plugins.security.audit.type" = "internal_opensearch";
-
-      # # plugins.security.enable_snapshot_restore_privilege: true
-      # "plugins.security.enable_snapshot_restore_privilege" = true;
-
-      # # plugins.security.check_snapshot_restore_write_privileges: true
-      # "plugins.security.check_snapshot_restore_write_privileges" = true;
-
-      # # plugins.security.restapi.roles_enabled: [all_access, security_rest_api_access]
-      # "plugins.security.restapi.roles_enabled" = [
-      #   "all_access"
-      #   "security_rest_api_access"
-      # ];
-
-      # # plugins.security.system_indices.enabled: true
-      # "plugins.security.system_indices.enabled" = true;
-
-      # # node.max_local_storage_nodes: 3
-      # "node.max_local_storage_nodes" = 3;
-
-      # "plugins.security.disabled" = false;
-
-      # "opensearch.experimental.feature.extensions.enabled" = true;
-      # "plugins.security.ssl_only" = true;
-      # "plugins.security.ssl.transport.pemcert_filepath" = "${certs_dir}/os-node-01.pem";
-      # "plugins.security.ssl.transport.pemkey_filepath" = "${certs_dir}/os-node-01-key.pem";
-      # "plugins.security.ssl.transport.pemtrustedcas_filepath" = "${certs_dir}/root-ca.pem";
-      # "plugins.security.ssl.transport.enforce_hostname_verification" = false;
-      # "plugins.security.ssl.http.enabled" = true;
-      # "plugins.security.ssl.http.pemcert_filepath" = "${certs_dir}/os-node-01.pem";
-      # "plugins.security.ssl.http.pemkey_filepath" = "${certs_dir}/os-node-01-key.pem";
-      # "plugins.security.ssl.http.pemtrustedcas_filepath" = "${certs_dir}/root-ca.pem";
-      # "network.host" = "localhost";
-
-      ######## Start OpenSearch Security Demo Configuration ########
-      # WARNING: revise all the lines below before you go into production
-      # "plugins.security.ssl.transport.pemcert_filepath" = "esnode.pem";
-      # "plugins.security.ssl.transport.pemkey_filepath" = "esnode-key.pem";
-      # "plugins.security.ssl.transport.pemtrustedcas_filepath" = "root-ca.pem";
-      # "transport.ssl.enforce_hostname_verification" = false;
-      # "plugins.security.ssl.http.enabled" = true;
-      # "plugins.security.ssl.http.pemcert_filepath" = "esnode.pem";
-      # "plugins.security.ssl.http.pemkey_filepath" = "esnode-key.pem";
-      # "plugins.security.ssl.http.pemtrustedcas_filepath" = "root-ca.pem";
-      # "plugins.security.allow_unsafe_democertificates" = true;
-      # "plugins.security.allow_default_init_securityindex" = true;
-      # "plugins.security.authcz.admin_dn" = [
-      #   "CN=kirk,OU=client,O=client,L=test,C=de"
-      # ];
-      # "plugins.security.audit.type" = "internal_opensearch";
-      # "plugins.security.enable_snapshot_restore_privilege" = true;
-      # "plugins.security.check_snapshot_restore_write_privileges" = true;
-      # "plugins.security.restapi.roles_enabled" = [
-      #   "all_access"
-      #   "security_rest_api_access"
-      # ];
-      # "plugins.security.system_indices.enabled" = true;
-      # "network.host" = "0.0.0.0";
-      # "node.name" = "smoketestnode";
-      # "cluster.initial_cluster_manager_nodes" = "smoketestnode";
-      # "node.max_local_storage_nodes" = 3;
-      ######## End OpenSearch Security Demo Configuration ########
+     
     };
   };
 

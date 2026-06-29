@@ -123,7 +123,7 @@
         "cachyos-kernel-patches": "cachyos-kernel-patches_2",
         "flake-compat": "flake-compat_7",
         "flake-parts": "flake-parts_7",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1781463250,
@@ -199,6 +199,28 @@
         "shallow": true,
         "type": "git",
         "url": "https://git.oss.uzinfocom.uz/xinux/e-imzo-manager"
+      }
+    },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "penpot",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1771571526,
+        "narHash": "sha256-JvL7TMheC4pih3VbxVlPSgqhGxLiaFUppcsJoDnOg9Y=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "f677bc93ec72abced2828e2c7720df0f9c25f825",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -2255,6 +2277,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1771369470,
+        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1781421111,
         "narHash": "sha256-2xSTHlKBF5h/tgAeHyQPR/g48qk9ACz7dED3jc3pGKA=",
         "owner": "NixOS",
@@ -2269,7 +2307,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1780749050,
         "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
@@ -2292,16 +2330,36 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1781266695,
-        "narHash": "sha256-a3Tz/G19Lviuswqbgz6gxxG8WyQF+/tA2E4F1BfuT1w=",
+        "lastModified": 1781248584,
+        "narHash": "sha256-axf/e6RzROpAyqmBrkZOeQ/ZwDWRSkFi0vkmAoLn6jA=",
         "owner": "wolfram444",
         "repo": "OpenSearch-Dashboards",
-        "rev": "effdb8f544236d2ce60fb7f0e7bb5ca470b3cac5",
+        "rev": "812d606c927c8260d44cdaf58d019d39e7224677",
         "type": "github"
       },
       "original": {
         "owner": "wolfram444",
+        "ref": "test_feat",
         "repo": "OpenSearch-Dashboards",
+        "type": "github"
+      }
+    },
+    "penpot": {
+      "inputs": {
+        "fenix": "fenix",
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1780479746,
+        "narHash": "sha256-TJ1M6L92zl4JcjEoM0lRxwSFZohFFuSjt5ERmdOtpbU=",
+        "owner": "wolfram444",
+        "repo": "penpot-nix",
+        "rev": "418701f51edc263fd5f9d09c1395eec0e62d80d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wolfram444",
+        "repo": "penpot-nix",
         "type": "github"
       }
     },
@@ -2314,10 +2372,28 @@
         "nix-data": "nix-data",
         "nixpkgs": "nixpkgs_3",
         "opensearch-dashboard": "opensearch-dashboard",
+        "penpot": "penpot",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",
         "xinux-modules": "xinux-modules",
         "xinux-settings": "xinux-settings_2"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771505899,
+        "narHash": "sha256-MdRGkz3huAAhsHGnRv0XZV4RG/yO9HOrmhCbOclqcIk=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "d8e0e96766968bfebca2360ae4cb8f08d7bbab18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
       }
     },
     "rust-overlay": {
@@ -3192,7 +3268,7 @@
     },
     "xinux-settings_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "xinux-lib": "xinux-lib_9"
       },
       "locked": {

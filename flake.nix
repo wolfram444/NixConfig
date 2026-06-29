@@ -18,7 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,11 +39,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # disko = {
-    #   url = "git+https://git.oss.uzinfocom.uz/mirrors/disko.git";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     bluer.url = "git+https://git.oss.uzinfocom.uz/bleur/bleur?ref=main&shallow=1";
 
     snowfall-lib = {
@@ -52,7 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    opensearch-dashboard.url = "github:wolfram444/OpenSearch-Dashboards";
+    opensearch-dashboard.url = "github:wolfram444/OpenSearch-Dashboards?ref=test_feat";
+
+    #Penpot
+    penpot.url = "github:wolfram444/penpot-nix";
 
   };
 

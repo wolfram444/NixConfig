@@ -41,6 +41,10 @@
     ];
   };
 
+  networking.hosts = {
+    "135.181.165.24" = [ "search.funksiyachi.uz" ];
+  };
+
   virtualisation.docker = {
     enable = true;
   };

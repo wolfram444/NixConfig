@@ -64,6 +64,9 @@ let
   # };
 in
 {
+
+  imports = [ inputs.opensearch-dashboard.nixosModules.default ];
+
   # imports = [ inputs.opensearch-dashboard.nixosModules.default ];
   services.opensearch-dashboards = {
 

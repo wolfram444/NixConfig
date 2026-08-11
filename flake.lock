@@ -2003,10 +2003,10 @@
         "xinux-lib": "xinux-lib"
       },
       "locked": {
-        "lastModified": 1780518212,
-        "narHash": "sha256-wcViy1+c5gbu7Yd66UU5GBPGGqhzBYVZwPIArrS47IE=",
+        "lastModified": 1782902172,
+        "narHash": "sha256-f1NLxUs7UvO4YVDOETvtEoPycOR+CEK+QmzUx7wrVUA=",
         "ref": "main",
-        "rev": "c36de9b47a8d32e89d8192deda5bf8df7d0f42df",
+        "rev": "3da0a13ee9580c844f26a91e2c3fe0ecc8da00f7",
         "shallow": true,
         "type": "git",
         "url": "https://git.oss.uzinfocom.uz/xinux/nix-data"

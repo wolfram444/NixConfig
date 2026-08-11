@@ -10,43 +10,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules.nix
-    inputs.opensearch-dashboard.nixosModules.default
     # inputs.penpot.nixosModules.default
   ];
-
-  # sops = {
-  #   secrets = {
-
-  #     # Penpot
-  #     "penpot/backend" = {
-  #       format = "binary";
-  #       owner = "penpot";
-  #       sopsFile = ../../../secrets/penpot.hell;
-  #     };
-
-  #     # Penpot-for-exporter
-  #     "penpot/exporter" = {
-  #       format = "binary";
-  #       owner = "penpot";
-  #       sopsFile = ../../../secrets/penpot-2.hell;
-  #     };
-
-  #   };
-
-  # };
-
-  # services.nginx.enable = true;
-  # security.acme = {
-  #   acceptTerms = true;
-  #   defaults.email = "your-email@example.com";
-  # };
-
-  # services.penpot = {
-  #   enable = true;
-  #   domain = "penpot.uz";
-  #   secretKeyFile = config.sops.secrets."penpot/backend".path;
-  #   secretKeyFileEX = config.sops.secrets."penpot/exporter".path;
-  # };
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "asus"; # Define your hostname.
@@ -74,37 +39,6 @@
     packages = with pkgs; [
       #  thunderbird
     ];
-  };
-
-  # services.rathole = {
-  #   enable = true;
-  #   role = "client";
-  #   settings = {
-  #     client = {
-  #       remote_addr = "135.181.165.24:2333"; # Server's public address
-  #       services = {
-  #         kotiba-lambda = {
-  #           local_addr = "127.0.0.1:5601"; # Local SSH port (Service's which you wanna expose)
-  #           token = "iqdjq09djowjd09121192";
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
-
-  services.grafana = {
-    enable = true;
-    settings = {
-      server = {
-        # Listening Address
-        http_addr = "127.0.0.1";
-        # and Port
-        http_port = 3001;
-        # Grafana needs to know on which domain and URL it's running
-        domain = "your.domain";
-      };
-      security.secret_key = "142bca23563cd6f273c7f41c6daa2b33b86c7ed38efcdc4e5faff0c3cab50b9d";
-    };
   };
 
   services.asterisk = {

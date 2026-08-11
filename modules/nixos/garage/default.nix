@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.garage = {
-    enable = true;
+    enable = false;
     package = pkgs.garage_2;
 
     settings = {

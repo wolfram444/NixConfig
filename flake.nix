@@ -49,7 +49,7 @@
     opensearch-dashboard.url = "github:wolfram444/OpenSearch-Dashboards?ref=test_feat";
 
     #Penpot
-    penpot.url = "github:wolfram444/penpot-nix";
+    penpot.url = "/home/wolf4am/WorkPlace/Projects/penpot-nix";
 
   };
 

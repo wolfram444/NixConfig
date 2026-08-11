@@ -9,7 +9,10 @@ in
     e-imzo-manager
     xinux-settings
     bluer
+    gitte
     jdk
+    remmina
+    # garage-webui
     # (pkgs.callPackage /home/wolf4am/WorkPlace/xinux/upstream/pkgs/by-name/e-/e-imzo/package.nix { })5
   ];
 }

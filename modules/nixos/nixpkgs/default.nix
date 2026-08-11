@@ -30,8 +30,6 @@
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       ];
       trusted-users = [
-        "root"
-        "wolf4am"
         "@wheel"
       ];
     };

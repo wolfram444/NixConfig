@@ -25,7 +25,7 @@
         metrics_token = "d8eCFmyqMf+nWKDqpI90cqXATEWTPLRE0V3DzyJMz3k=";
       };
 
-      services.garage-webui.enable = true;
+      # services.garage-webui.enable = true;
 
       # replication_factor = 1;
       # data_dir = "/var/lib/garage/data";
